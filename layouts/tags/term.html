@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>タグ: {{ .Title }}</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f3f0e7;
+      margin: 0;
+      padding: 2em;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 1em;
+    }
+
+    .board {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1em;
+      justify-content: center;
+    }
+
+    .note {
+      display: block;
+      background: #fff8a6;
+      width: 200px;
+      min-height: 150px;
+      padding: 1em;
+      border-radius: 8px;
+      box-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+      transform: rotate(-2deg);
+      transition: transform 0.1s;
+      color: #333;
+      text-decoration: none;
+      position: relative;
+    }
+
+    .note:nth-child(3n) {
+      background: #a6e1ff;
+      transform: rotate(1.5deg);
+    }
+
+    .note:nth-child(4n) {
+      background: #ffd3d3;
+      transform: rotate(-1deg);
+    }
+
+    .note:hover {
+      transform: rotate(0deg) scale(1.03);
+      z-index: 2;
+    }
+
+    .note small {
+      display: block;
+      margin-top: 0.5em;
+      color: #666;
+      font-size: 0.85em;
+      font-weight: normal;
+    }
+
+    .back {
+      text-align: center;
+      margin-top: 2em;
+    }
+
+    .back a {
+      text-decoration: none;
+      color: #007acc;
+    }
+
+    .back a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>タグ: {{ .Title }}</h1>
+
+  <div class="board">
+    {{ range .RegularPages }}
+      <a href="{{ .RelPermalink }}" class="note">
+        <strong>{{ .Title }}</strong>
+        {{ with .Params.summary }}
+          <small>{{ . }}</small>
+        {{ end }}
+      </a>
+    {{ end }}
+  </div>
+
+  <div class="back">
+    <a href="/tags/">← タグ一覧に戻る</a>
+  </div>
+</body>
+</html>

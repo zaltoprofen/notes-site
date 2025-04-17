@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>タグ一覧</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f3f0e7;
+      padding: 2em;
+      margin: 0;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2em;
+      margin-bottom: 1em;
+    }
+
+    .label-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.8em;
+      margin-top: 2em;
+    }
+
+    .label {
+      display: inline-block;
+      padding: 0.5em 1em;
+      border: 2px solid #555;
+      border-radius: 5px;
+      font-weight: bold;
+      background: #fff;
+      text-decoration: none;
+      color: #333;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .label:hover {
+      background: #e6e6e6;
+      transform: scale(1.05);
+    }
+
+    .back {
+      display: block;
+      text-align: center;
+      margin-top: 3em;
+    }
+
+    .back a {
+      text-decoration: none;
+      color: #007acc;
+    }
+
+    .back a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>タグ一覧</h1>
+
+  <div class="label-container">
+    {{ range .Data.Terms.ByCount }}
+      <a href="{{ .Page.RelPermalink }}" class="label">
+        {{ .Term }} ({{ .Count }})
+      </a>
+    {{ end }}
+  </div>
+
+  <div class="back">
+    <a href="{{ "/" | relURL }}">← トップに戻る</a>
+  </div>
+</body>
+</html>

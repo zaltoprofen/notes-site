@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ .Title }}</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f3f0e7;
+      margin: 0;
+      padding: 2em;
+    }
+
+    .note-container {
+      background: #fffefc;
+      padding: 2em;
+      border-radius: 10px;
+      max-width: 800px;
+      margin: 0 auto;
+      box-shadow: 4px 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 2em;
+      color: #333;
+    }
+
+    .meta {
+      font-size: 0.9em;
+      color: #777;
+      margin-bottom: 1em;
+    }
+
+    .content {
+      line-height: 1.6;
+    }
+
+    .tags {
+      margin-top: 2em;
+      font-size: 0.9em;
+      color: #555;
+    }
+
+    .tags span {
+      background: #e6e6e6;
+      padding: 0.2em 0.5em;
+      margin-right: 0.4em;
+      border-radius: 5px;
+      display: inline-block;
+    }
+
+    a.back {
+      display: inline-block;
+      margin-top: 2em;
+      color: #007acc;
+      text-decoration: none;
+    }
+
+    a.back:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="note-container">
+    <h1>{{ .Title }}</h1>
+    <div class="meta">
+      投稿日: {{ .Date.Format "2006年1月2日" }}
+    </div>
+
+    <div class="content">
+      {{ .Content }}
+    </div>
+
+    {{ with .Params.tags }}
+    <div class="tags">
+      タグ:
+      {{ range . }}
+        <a href="/tags/{{ . | urlize }}"><span>{{ . }}</span></a>
+      {{ end }}
+    </div>
+    {{ end }}
+
+    <a class="back" href="{{ "/" | relURL }}">← トップに戻る</a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+baseURL = "http://example.com/"
+languageCode = "ja"
+title = "Notes"
+
+[outputs]
+home = ["HTML", "JSON"]
+
+[taxonomies]
+tag = "tags"
