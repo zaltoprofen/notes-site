@@ -124,7 +124,7 @@
       let fuse = null;
       let data = [];
 
-      fetch("/index.json")
+      fetch("{{ "index.json" | relURL }}")
         .then(res => res.json())
         .then(json => {
           data = json;

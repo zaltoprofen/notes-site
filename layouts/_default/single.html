@@ -77,12 +77,12 @@
     <div class="tags">
       タグ:
       {{ range . }}
-        <a href="/tags/{{ . | urlize }}"><span>{{ . }}</span></a>
+        <a href="{{ printf "tags/%s/" (urlize .) | relURL }}"><span>{{ . }}</span></a>
       {{ end }}
     </div>
     {{ end }}
 
-    <a class="back" href="{{ "/" | relURL }}">← トップに戻る</a>
+    <a class="back" href="{{ relURL "" }}">← トップに戻る</a>
   </div>
 </body>
 </html>
